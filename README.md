@@ -5,7 +5,6 @@ Overview
 --------
 General details and purpose of the project.
 
----
 ## Installation
 Installation is pretty quick and painless.  You'll need a few things before you're up and running though.  Install the following in the order listed:
 
