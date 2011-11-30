@@ -20,11 +20,6 @@ exports.init = function(app, publicPath) {
         })
     });
 
-    // Get chat (for demonstration of socket.io
-    app.get('/chat', function(req, res) {
-        res.sendfile(publicPath + '/chat.htm');
-    });
-
     // Get panels (for demonstration of restful json)
     app.get('/panels/:name', function(req, res) {
         var content = [];
