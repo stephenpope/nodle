@@ -38,7 +38,7 @@ npm install -d
 ###Configure IIS
 + Start IIS Manager
 + Create a new site, called what ever you like.
-+ Set the physical path property to the cloned nodle folder
++ Set the physical path property to the cloned nodle\node folder
 + Provide a host name for the binding (you can change the port if you need to)
 
 ###Edit Hosts
