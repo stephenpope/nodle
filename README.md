@@ -29,10 +29,10 @@ Check all is okay with <code>node -v</code>
 <code>git clone https://github.com/stephenpope/nodle.git</code>
 
 ###Install Dependencies
-<code> cd nodle\node
+<pre> cd nodle\node
 
 npm install -d
-</code>
+</pre>
 
 ###Configure IIS
 + Start IIS Manager
