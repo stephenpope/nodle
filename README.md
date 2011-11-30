@@ -29,8 +29,8 @@ Check all is okay with <code>node -v</code>
 ###Clone Project
 <code>git clone https://github.com/stephenpope/nodle.git</code>
 
-###Install Dependancies
-<code> cd nodle
+###Install Dependencies
+<code> cd nodle\node
 
 npm install -d
 </code>
