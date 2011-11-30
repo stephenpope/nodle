@@ -1,0 +1,72 @@
+#manage-connections.modal.fade(style='display:none')
+    .modal-header
+        a.close(href='#') ×
+        h3 Manage Connections
+    .modal-body
+        section
+            h4 Create
+                small Add a new connection to start recieving messages
+            .row
+                .span4
+                    form.form-stacked
+                        fieldset
+                            .clearfix
+                                label(for='connection-name') Name
+                                .input
+                                    input#connection-name
+                .span4
+                    form.form-stacked
+                        fieldset
+                            .clearfix
+                                label(for='connection-url') Url
+                                .input
+                                    input#connection-url
+                            .clearfix
+                                label
+                                .input
+                                    ul.inputs-list
+                                        li
+                                            label
+                                                input#connect-on-create(type='checkbox')
+                                                span Connect immediately
+            .well
+                .row
+                    .span6
+                        #create-connection-message.alert-message.success(style='display:none')
+                            strong#message-name
+                            |  created.
+                    .pull-right
+                        button.btn.primary Create
+                        button.btn Clear
+        section
+            h4 Update
+                small Modfy your current connection list
+            div(style='overflow:auto')
+                table.bordered-table.zebra-striped
+                    thead
+                        tr
+                            th Name
+                            th Url
+                            th Delete
+                    tbody#connections-table-body
+                        tr
+                            td Connection name
+                            td http://my.node.com/connection-address
+                            td: input(type='checkbox')
+                        tr
+                            td Connection name
+                            td http://my.node.com/connection-address
+                            td: input(type='checkbox')
+                        tr
+                            td Connection name
+                            td http://my.node.com/connection-address
+                            td: input(type='checkbox')
+                        tr
+                            td Connection name
+                            td http://my.node.com/connection-address
+                            td: input(type='checkbox')
+
+    .modal-footer(style='padding-right: 35px')
+        button.btn Cancel
+        button.btn.primary Save
+

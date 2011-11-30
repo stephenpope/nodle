@@ -1,0 +1,80 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<title>Kieranties Khat</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket;
+			function socketSetup(callback){
+				display('Connecting...');
+				socket = io.connect('http://' + location.host);
+				socket.on('connect', function () {
+					display('Connected successfully');
+					callback();
+				});
+				socket.on('message', display);
+			}
+
+			function display(data){
+				var text = document.createTextNode(data);
+				var linebreak = document.createElement('br');
+				var chat = document.getElementById('chat');
+				chat.appendChild(text);
+				chat.appendChild(linebreak);
+				chat.scrollTop = chat.scrollHeight;
+			}
+			
+			function usernameKeyPress(evt){
+				isSubmit(evt, function(data){		
+					document.getElementById('message-wrap').setAttribute('style', 'display:block');
+					socketSetup(function(){
+						document.getElementById('username').setAttribute('disabled', 'disabled');
+						display('Logging in...');
+						socket.emit('login', data, display);
+					});					
+				});
+			}
+			
+			function messageKeyPress(evt){
+				isSubmit(evt, function(data){
+					socket.send(data);
+					evt.target.value = '';
+				});
+			}
+			
+			function isSubmit(evt, callback){
+				if(evt.keyCode === 13){
+					var val = evt.target.value;
+					if(val){
+						callback(val);
+					}
+				}
+			}
+			
+		</script>
+		<style>
+			#username{
+				width:200px;
+			}
+			#chat{
+				height:300px;
+				border: 1px solid;
+				overflow: auto;
+			}
+			#message{
+				width:350px;
+			}
+			#message-wrap{
+				display:none
+			}
+		</style>
+	</head>
+	<body>
+		<label for="username">Username:</label>
+		<input type="text" id="username" placeholder="Username required" onkeypress="usernameKeyPress(evt)"/>
+		<div id="message-wrap">
+		<div id="chat"></div>
+		<input type="text" id="message" placeholder="Enter message..." onkeypress="messageKeyPress(evt)"/>
+		</div>
+	</body>
+</html>

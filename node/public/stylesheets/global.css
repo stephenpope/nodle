@@ -1,0 +1,86 @@
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small{
+    margin-left: 5px;
+}
+#create-connection-message{
+    margin-bottom: 0;
+    padding: 4px 15px;
+}
+.modal{
+    margin: -300px 0 0 -300px;
+    width: 580px;
+}
+.modal-body{
+    max-height: 480px;
+    overflow: auto;
+}
+.form-stacked{
+    padding-left: 0;
+}
+.form-stacked fieldset{
+    padding-top: 0;
+}
+.topbar{
+    position: relative;
+    margin-bottom: 20px;
+}
+li.pdf{
+    background: url("/images/icons/page_white_acrobat.png") left no-repeat;
+    padding-left: 20px;
+}
+li.xls{
+    background: url("/images/icons/page_white_excel.png") left no-repeat;
+    padding-left: 20px;
+}
+li.csv{
+    background: url("/images/icons/page_white_database.png") left no-repeat;
+    padding-left: 20px;
+}
+li.xml{
+    background: url("/images/icons/page_white_code.png") left no-repeat;
+    padding-left: 20px;
+}
+li.txt{
+    background: url("/images/icons/page_white_text.png") left no-repeat;
+    padding-left: 20px;
+}
+li.bullet-green{
+    background: url("/images/icons/bullet_green.png") left no-repeat;
+    padding-left: 20px;
+}
+li.bullet-red{
+    background: url("/images/icons/bullet_red.png") left no-repeat;
+    padding-left: 20px;
+}
+li.bullet-orange{
+    background: url("/images/icons/bullet_orange.png") left no-repeat;
+    padding-left: 20px;
+}
+span.help{
+    background: url("/images/icons/help.png") left no-repeat;
+    width: 16px;
+    display: inline-block;
+    height: 16px;
+    float: right;
+    margin-top: 10px;
+}
+span.delete{
+    background: url("/images/icons/bullet_delete.png") right no-repeat;
+    width: 16px;
+    display: inline-block;
+    height: 16px;
+    float: right;
+}
+span.filter-save{
+    background: url("/images/icons/magnifier_zoom_in.png") left no-repeat;
+    width: 16px;
+    display: inline-block;
+    height: 16px;
+    vertical-align: bottom;
+}
+.center{
+    text-align: center;
+}
+
+#message-counter{
+    margin-top: 10px;
+}

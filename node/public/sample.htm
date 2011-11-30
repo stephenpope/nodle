@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Node{msg}</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/global.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="/javascripts/mustache.js"></script>
+    <script type="text/javascript" src="/javascripts/settings.js"></script>
+    <script type="text/javascript" src="/javascripts/core.js"></script>
+</head>
+<body>
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="container-fluid"><a href="#" class="brand">Node{msg}</a>
+            <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul id="connections" class="nav secondary-nav">
+                <li data-dropdown="dropdown" class="dropdown"><a href="#" class="dropdown-toggle">Connect</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-controls-modal="manage-connections">Manage Connections</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="sidebar">
+        <div id="filters" class="well">
+            <div class="page-header">
+                <h4>Filters <span id="filter-help" class="help"></span></h4>
+            </div>
+            <ul id="saved-filters" class="unstyled">
+                <li><a href="#">Filter A</a><span class="delete"></span></li>
+                <li><a href="#about">Filter B</a><span class="delete"></span></li>
+                <li><a href="#contact">Filter C</a><span class="delete"></span></li>
+            </ul>
+            <h5>Session Filters</h5>
+            <ul id="session-filters" class="unstyled">
+                <li><a href="#">New Filter 1</a><span class="delete"></span></li>
+                <li><a href="#about">New Filter 2</a><span class="delete"></span></li>
+            </ul>
+            <div class="center">
+                <button id="filter-create" class="btn success">Create</button>
+                <button class="btn info">Export</button>
+            </div>
+        </div>
+        <div id="options" class="well">
+            <div class="page-header"><h4>Options <span id="options-help" class="help"></span></h4></div>
+            <form class="form-stacked">
+                <fieldset>
+                    <div class="clearfix">
+                        <label for="max-messages">Max messages</label>
+                        <div class="input">
+                            <input class="span3" id="max-messages" type="number" step="25" min="25" max="1000" value="500"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <h5>Export</h5>
+            <div class="row">
+                <div class="span1">
+                    <ul class="unstyled">
+                        <li class="pdf"><a href="#">Pdf</a></li>
+                        <li class="xls"><a href="#">Xls</a></li>
+                    </ul>
+                </div>
+                <div class="span1">
+                    <ul class="unstyled">
+                        <li class="csv"><a href="#">Csv</a></li>
+                        <li class="xml"><a href="#">Xml</a></li>
+                    </ul>
+                </div>
+                <div class="span1">
+                    <ul class="unstyled">
+                        <li class="txt"><a href="#">Txt</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="users" class="well">
+            <div class="page-header"><h4>Users <span id="users-help" class="help"></span></h4></div>
+            <ul class="unstyled">
+                <li class="bullet-green"><a href="#">User 1</a></li>
+                <li class="bullet-orange"><a href="#">User2</a></li>
+                <li class="bullet-red"><a href="#">User3</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <ul class="breadcrumb">
+            <li><span class="filter-save"></span></li>
+            <li><a href="#filterA">Filter A</a><span class="divider">+</span></li>
+            <li><a href="#filterA/filterB">Filter B</a><span class="divider">+</span></li>
+            <li><a href="#filterA/filterB/filterC">Filter C</a><span class="divider">+</span></li>
+            <li><a href="#filterA/filterB/filterC/filterD">Filter D</a></li>
+            <li class="pull-right">
+                <span class="save"></span>
+            </li>
+        </ul>
+        <section>
+            <div class="page-header">
+                <h1>Filter Name
+                    <small id="message-counter" class="pull-right">
+                        Messages: <span class="label warning">987</span>
+                    </small>
+                </h1>
+            </div>
+            <table class="bordered-table zebra-striped">
+                <thead>
+                <tr>
+                    <th>One</th>
+                    <th>Two</th>
+                    <th>Three</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+</body>
+<div id="manage-connections" style="display:none" class="modal fade">
+    <div class="modal-header"><a href="#" class="close">×</a>
+
+        <h3>Manage Connections</h3></div>
+    <div class="modal-body">
+        <section>
+            <h4>Create
+                <small>Add a new connection to start recieving messages</small>
+            </h4>
+            <div class="row">
+                <div class="span4">
+                    <form class="form-stacked">
+                        <fieldset>
+                            <div class="clearfix"><label for="connection-name">Name</label>
+
+                                <div class="input"><input id="connection-name"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="span4">
+                    <form class="form-stacked">
+                        <fieldset>
+                            <div class="clearfix"><label for="connection-url">Url</label>
+
+                                <div class="input"><input id="connection-url"></div>
+                            </div>
+                            <div class="clearfix"><label></label>
+
+                                <div class="input">
+                                    <ul class="inputs-list">
+                                        <li><label><input id="connect-on-create" type="checkbox"><span>Connect immediately</span></label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="well">
+                <div class="row">
+                    <div class="span6">
+                        <div id="create-connection-message" style="display:none" class="alert-message success"><strong
+                                id="message-name"></strong> created.
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn primary">Create</button>
+                        <button class="btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h4>Update
+                <small>Modfy your current connection list</small>
+            </h4>
+            <div style="overflow:auto">
+                <table class="bordered-table zebra-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Url</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody id="connections-table-body">
+                    <tr>
+                        <td>Connection name</td>
+                        <td>http://my.node.com/connection-address</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Connection name</td>
+                        <td>http://my.node.com/connection-address</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Connection name</td>
+                        <td>http://my.node.com/connection-address</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Connection name</td>
+                        <td>http://my.node.com/connection-address</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <div style="padding-right: 35px" class="modal-footer">
+        <button class="btn">Cancel</button>
+        <button class="btn primary">Save</button>
+    </div>
+</div>
+</html>
