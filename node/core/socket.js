@@ -1,7 +1,10 @@
+/*
+    Socket.io configuration
+ */
 exports.init = function(app){
 	var io = require('socket.io').listen(app);
 
-	//socket.io configuration
+	//wire up clients on connect
 	io.sockets.on('connection', function(client){
 
 		//login inform others of connection
@@ -20,6 +23,4 @@ exports.init = function(app){
 			})
 		});
 	});
-
-
 };

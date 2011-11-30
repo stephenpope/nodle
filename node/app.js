@@ -1,14 +1,13 @@
-
-/**
- * Module dependencies.
- */    
-      
+/*
+    The main application.
+    Creates Express server and initialises application components
+ */
 var express = require('express'),
 	app = module.exports = express.createServer(),
 	routeConfig = require('./core/routes').init(app, __dirname + '/public'),
 	socketConfig = require('./core/socket').init(app);
 
-// Configuration
+// General configuration
 app.configure(function(){
   app.set('views', __dirname + '/views'); 
   app.set('view engine', 'jade');
@@ -18,14 +17,17 @@ app.configure(function(){
   app.use(app.router);  
 });
 
+// Development configuration
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
+// Production configuration
 app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
-       
+
+// Running on iisnode so use port from global process (iis defines the port)
 app.listen(process.env.PORT);
-console.log("Express server listening in %s mode", app.settings.env);
+console.log("Nodle server listening in %s mode", app.settings.env);
 
