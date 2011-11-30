@@ -4,10 +4,20 @@
  */
 var express = require('express'),
 	app = module.exports = express.createServer(),
-	routeConfig = require('./core/routes').init(app, __dirname + '/public'),
-	socketConfig = require('./core/socket').init(app);
+    couchParams = {
+        protocol: process.env.couchProtocol,
+        url: process.env.couchUrl,
+        name: process.env.couchDb,
+        username: process.env.couchUsername,
+        password: process.env.couchPassword
+    };
+    
+//init core modules
+require('./core/routes').init(app, __dirname + '/public');
+require('./core/socket').init(app);
+require('./core/couch').init(couchParams);
 
-// General configuration
+// Express configuration
 app.configure(function(){
   app.set('views', __dirname + '/views'); 
   app.set('view engine', 'jade');
@@ -21,12 +31,12 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
-
+  
 // Production configuration
 app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
-
+  
 // Running on iisnode so use port from global process (iis defines the port)
 app.listen(process.env.PORT);
 console.log("Nodle server listening in %s mode", app.settings.env);
