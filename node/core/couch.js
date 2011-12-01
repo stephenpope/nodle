@@ -2,22 +2,47 @@
     Couch communication handler
 */
 exports.init = function(params){
+    var accessor = {}
     var conn = params.protocol + "://"
         + params.username + ":" + params.password
         + "@" + params.url;
     var nano = require('nano')(conn);
-    var nodleRepo = nano.use(params.name);
-
-    nodleRepo.get('rabbit', function(e,b,h){ //get a document
-        b.crazy = 'just testing'; //modify a property
-        console.log(b);
-        nodleRepo.insert(b, function(a,b,c){ //update the document
-            console.log(a,b,c);
-        });
+    
+    //build the channel cache
+    nano.db.list(function(err, body, headers){
+        if(err){throw err;}
+        accessor.channels = body;
     });
-//
-//    nodleRepo.insert({crazy: false}, "rabbit", function(e,b,h){
-//        if(e) { throw e; }
-//        console.log("you have inserted the rabbit.")
-//      });
+
+    //get channel db if not create it
+    function getChannelRepo(channel, callback){
+        if(accessor.channels[channel]){
+            callback(nano.use(channel));
+        } else {
+            nano.db.create(channel, function(){
+                accessor.channels.push(channel);
+                callback(nano.use(channel));
+            });   
+        }
+    };
+
+    //publish a message to the store
+    function storeContent(channel, id, content, callback){
+        getChannelRepo(channel, function(repo){
+            console.log(content);
+            console.log(id);
+            repo.insert(content, id, function(e,b,h){
+                if(e){
+                    callback(e);
+                    throw e
+                };
+                console.log(b) //better handling here
+                callback(b);
+            })
+        });
+    }
+
+    //expose public methods
+    accessor.store = storeContent;
+    return accessor;
 };
