@@ -16,6 +16,24 @@ namespace Nodel.Distribution.Example
         }
     }
 
+    public class ExampleConfig : INodleDistributionConfig
+    {
+        public string AccessKey
+        {
+            get { return "123456"; }
+        }
+
+        public string BaseUrl
+        {
+            get { return "http://monkey-pc"; }
+        }
+
+        public string Channel
+        {
+            get { return "example"; }
+        }
+    }
+
     public class ExampleMessage : INodleMessage
     {
         public string Action { get; set; }
@@ -30,6 +48,13 @@ namespace Nodel.Distribution.Example
 
     public class ConsoleLogger:INodleLogger
     {
+        public NodleLogLevel LogLevel { get; set; }
+
+        public ConsoleLogger()
+        {
+            LogLevel = NodleLogLevel.INFO;
+        }
+
         public void Info(string infoMessage)
         {
             Console.WriteLine("{0} - [INFO] - {1}",DateTime.Now, infoMessage);

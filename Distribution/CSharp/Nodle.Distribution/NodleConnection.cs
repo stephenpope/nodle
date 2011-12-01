@@ -37,6 +37,11 @@ namespace Nodle.Distribution
         {
             if (_logger == null) return;
 
+            if(_logger.LogLevel == NodleLogLevel.INFO)
+            {
+                _logger.Info("Message sent!");
+            }
+
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 _logger.Error("Message not sent ( + " + response.ErrorMessage + " )");
