@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="INodelMessage.cs" />
     <Compile Include="INodleConnection.cs" />
+    <Compile Include="INodleDistributionConfig.cs" />
+    <Compile Include="INodleLogger.cs" />
     <Compile Include="NodleDistributionConfig.cs" />
     <Compile Include="NodleConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
