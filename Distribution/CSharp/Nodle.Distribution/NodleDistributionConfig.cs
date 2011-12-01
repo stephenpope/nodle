@@ -47,7 +47,7 @@ namespace Nodle.Distribution
         /// <summary>
         /// Returns the config instance.
         /// </summary>
-        public static NodleDistributionConfig Instance
+        public static INodleDistributionConfig Instance
         {
             get
             {
