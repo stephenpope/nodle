@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Nodle.Distribution
 {
@@ -8,21 +9,9 @@ namespace Nodle.Distribution
     public class NodleMessage: INodleMessage
     {
         /// <summary>
-        /// Gets the time the send created the message
-        /// </summary>
-        public DateTime Created { get; private set; }
-
-        /// <summary>
         /// The message body.  Contents will vary based on the object sent
         /// </summary>
+        [JsonProperty("body")]
         public object Body { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NodleMessage"/> class.
-        /// </summary>
-        public NodleMessage()
-        {
-            Created = DateTime.Now;
-        }
     }
 }

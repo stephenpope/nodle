@@ -57,7 +57,9 @@
     <Compile Include="NodleConnection.cs" />
     <Compile Include="NodleLogLevel.cs" />
     <Compile Include="NodleMessage.cs" />
+    <Compile Include="NullNodleLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShortGuid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
