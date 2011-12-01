@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>62d575a6-2365-4ceb-ba55-ee6f8ba47f45</ProjectGuid>
+    <ProjectGuid>{8023E524-F54C-4C8C-93DB-900B77FC436C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nodel.Distribution.Example</RootNamespace>
@@ -45,6 +45,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nodle.Distribution\Nodle.Distribution.csproj">
+      <Project>{A95C2FB3-4AE7-4208-9BAF-FEAC15F4BB0C}</Project>
+      <Name>Nodle.Distribution</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

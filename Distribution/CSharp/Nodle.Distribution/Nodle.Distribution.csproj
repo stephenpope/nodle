@@ -47,12 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INodelMessage.cs" />
+    <Compile Include="INodleMessage.cs" />
     <Compile Include="INodleConnection.cs" />
     <Compile Include="INodleDistributionConfig.cs" />
     <Compile Include="INodleLogger.cs" />
     <Compile Include="NodleDistributionConfig.cs" />
     <Compile Include="NodleConnection.cs" />
+    <Compile Include="NodleLogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
