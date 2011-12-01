@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/javascripts/mustache.js"></script>
+	    <script type="text/javascript">
+	    	var distributor;
+	    	var counter = -1;
+	    	var rowTemplate = "<tr><td>{{system}}</td><td>{{sender}}</td><td>{{type}}</td>{{sent}}<td></td><td>{{body}}</td></tr>"
+
+	    	function send(data){
+    			distributor.send(data);
+    		};
+
+	    	$(function(){
+	    		function display(data){	    			
+			    	counter = counter + 1;
+			    	$('#counter').text(counter);
+			    	$('#prog').val(counter);
+			    	var parsed = JSON.parse(data)
+			    	var row = Mustache.to_html(rowTemplate, parsed);
+			    	$('#listen-table tbody').append(row);
+			    	console.log(parsed);
+			    };
+
+	    		distributor = io.connect('http://' + location.host);
+	    		distributor.on('connect', function(){	    			
+	    			console.log('connected');
+	    		});
+	    		distributor.on('message', display);	    		   		
+	    	});
+	    </script>
+	</head>
+	<body>	
+	<progress id="prog" min="0" max="2224"></progress><br /><span id="counter">0</span>
+	<table id="listen-table">
+		<thead>
+			<tr>
+				<th>System</th>
+				<th>Sender</th>
+				<th>Type</th>
+				<th>Sent</th>
+				<th>Body</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	</body>
+</html>
