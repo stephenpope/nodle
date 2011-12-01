@@ -2,7 +2,7 @@
     Couch communication handler
 */
 exports.init = function(params){
-    var accessor = {}
+    var accessor = { channels: []};
     var conn = params.protocol + "://"
         + params.username + ":" + params.password
         + "@" + params.url;
@@ -29,14 +29,11 @@ exports.init = function(params){
     //publish a message to the store
     function storeContent(channel, id, content, callback){
         getChannelRepo(channel, function(repo){
-            console.log(content);
-            console.log(id);
             repo.insert(content, id, function(e,b,h){
                 if(e){
                     callback(e);
                     throw e
                 };
-                console.log(b) //better handling here
                 callback(b);
             })
         });

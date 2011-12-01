@@ -2,6 +2,7 @@
     Route configuration
  */
 exports.init = function(app, nano, io, publicPath) {
+    var message = require('./models/message');
     //properties
     var title = "Nodle";
 
@@ -20,7 +21,7 @@ exports.init = function(app, nano, io, publicPath) {
     });
 
     // Get panels (for demonstration of restful json)
-    app.get('/panels/:name', function(req, res) {
+    app.get('/panels/:name', function(req, res) {        
         var content = [];
         for (var x = 0; x < 6; x++) {
             content.push(req.params.name + x);
@@ -29,25 +30,22 @@ exports.init = function(app, nano, io, publicPath) {
     });
 
     app.post('/pub/:channel', function(req, res){
-        var id = req.header('nodleMsgId');
+        var msg = message.init(req);
         var channel = req.params.channel;
-        var content = req.body;
-        
-        console.log(req.is('json'));
-        console.log(req);
+        var id = req.header('nodleMsgId');
+        var toRespond = !!req.header('nodleRespond');
+
         //store message
-        nano.store(channel, id, content, function(data){
-            res.json({
-                id: id,
-                channel: channel,
-                content: data
-            })
+        nano.store(channel, id, msg, function(data){
+            if(toRespond){
+                res.json(data);
+            }
         });
 
-        io.send(content, function(){
+        //distribute message
+        io.send(msg, function(){
             console.log('sent');
         });
-        //distribute message
     })
 
     app.get('/channels', function(req, res){
