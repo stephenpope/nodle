@@ -11,8 +11,15 @@ namespace Nodel.Distribution.Example
         static void Main(string[] args)
         {
             var conn = new NodleConnection(NodleDistributionConfig.Instance, new ConsoleLogger());
-            var msg = new ExampleMessage();
-            conn.Send(msg);
+            var msg = new NodleMessage { Body = "Hello ducky!" };
+            
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine("[SENT #" + i + "]");
+                conn.Send(msg);    
+            }
+            
+            Console.ReadLine();
         }
     }
 
@@ -25,28 +32,16 @@ namespace Nodel.Distribution.Example
 
         public string BaseUrl
         {
-            get { return "http://monkey-pc"; }
+            get { return "http://nodle.io"; }
         }
 
         public string Channel
         {
-            get { return "example"; }
+            get { return "example" + new Random().Next(1, 1000); }
         }
     }
 
-    public class ExampleMessage : INodleMessage
-    {
-        public string Action { get; set; }
-        public List<string> Params { get; set; }
-
-        public ExampleMessage()
-        {
-            Action = "PUBLISH";
-            Params = new List<string>{ "cheese","cats","monkeys" };
-        }
-    }
-
-    public class ConsoleLogger:INodleLogger
+    public class ConsoleLogger : INodleLogger
     {
         public NodleLogLevel LogLevel { get; set; }
 
@@ -57,7 +52,7 @@ namespace Nodel.Distribution.Example
 
         public void Info(string infoMessage)
         {
-            Console.WriteLine("{0} - [INFO] - {1}",DateTime.Now, infoMessage);
+            Console.WriteLine("{0} - [INFO] - {1}", DateTime.Now, infoMessage);
         }
 
         public void Warn(string warnMessage)
