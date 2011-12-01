@@ -51,5 +51,13 @@ namespace Nodle.Distribution
         {
             get { return (string) this["channel"]; }
         }
+
+        internal NodleDistributionConfig(string username, string password, string url, string channel)
+        {
+            this["username"] = username;
+            this["password"] = password;
+            this["url"] = url;
+            this["channel"] = channel;
+        }
     }
 }
