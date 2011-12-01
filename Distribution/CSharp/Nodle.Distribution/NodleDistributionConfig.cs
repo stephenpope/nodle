@@ -7,18 +7,22 @@ namespace Nodle.Distribution
     /// </summary>
     public class NodleDistributionConfig : ConfigurationSection
     {
+        private static NodleDistributionConfig _instance;
+        private static readonly string _defaultSection = "nodleDistribution";
+        internal static string _customSection { get; set; }
+
         /// <summary>
         /// Gets the nodle service username.
         /// </summary>
-        [ConfigurationProperty("accesskey", IsRequired = true)]
+        [ConfigurationProperty("accessKey", IsRequired = true)]
         public string AccessKey
         {
             get
             {
-                return (string)this["accesskey"];
+                return (string)this["accessKey"];
             }
         }
-
+        
         /// <summary>
         /// Gets the nodle service URL.
         /// </summary>
@@ -40,12 +44,20 @@ namespace Nodle.Distribution
             get { return (string) this["channel"]; }
         }
 
-        //internal NodleDistributionConfig(string username, string password, string url, string channel)
-        //{
-        //    this["username"] = username;
-        //    this["password"] = password;
-        //    this["url"] = url;
-        //    this["channel"] = channel;
-        //}
+        /// <summary>
+        /// Returns the config instance.
+        /// </summary>
+        public static NodleDistributionConfig Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = ConfigurationManager.GetSection(_customSection ?? _defaultSection ) as NodleDistributionConfig;
+                }
+
+                return _instance;
+            }
+        }
     }
 }

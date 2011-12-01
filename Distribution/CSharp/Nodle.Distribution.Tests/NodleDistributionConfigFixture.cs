@@ -10,42 +10,60 @@ namespace Nodle.Distribution.Tests
     [TestFixture]
     public class NodleDistributionConfigFixture
     {
-        private NodleDistributionConfig _config;
 
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void Get_Instance_ReturnsInstance()
         {
-            _config = ConfigurationManager.GetSection("nodleDistribution") as NodleDistributionConfig;
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _config = null;
+            var config = NodleDistributionConfig.Instance;
+            Assert.IsInstanceOf<NodleDistributionConfig>(config);
         }
 
         [Test]
-        public void Get_Username_ReturnsGivenValue()
+        public void Get_AccessKey_ReturnsGivenValue()
         {
-            Assert.AreEqual("ConfigUsername", _config.Username);
+            var config = NodleDistributionConfig.Instance;
+            Assert.AreEqual("ConfigAccessKey", config.AccessKey);
         }
 
         [Test]
-        public void Get_Password_ReturnsGivenValue()
+        public void Get_BaseUrl_ReturnsGivenValue()
         {
-            Assert.AreEqual("ConfigPassword", _config.Password);
-        }
-
-        [Test]
-        public void Get_Url_ReturnsGivenValue()
-        {
-            Assert.AreEqual("http://ConfigUrl", _config.Url);
+            var config = NodleDistributionConfig.Instance;
+            Assert.AreEqual("http://ConfigUrl", config.BaseUrl);
         }
 
         [Test]
         public void Get_Channel_ReturnsGivenValue()
         {
-            Assert.AreEqual("ConfigChannel", _config.Channel);
+            var config = NodleDistributionConfig.Instance;
+            Assert.AreEqual("ConfigChannel", config.Channel);
+        }
+
+        [Test]
+        public void Get_InstanceWithMissingAccessKey_ReturnsMissingParameterError()
+        {
+            NodleDistributionConfig._customSection = "nodleDistributionMissingAccessKey";
+            Assert.Throws<ConfigurationErrorsException>(() =>
+                                                            {
+                                                                var dumb = NodleDistributionConfig.Instance;
+                                                            });
+        }
+        [Test]
+        public void Get_InstanceWithMissingBaseUrl_ReturnsMissingParameterError()
+        {
+            NodleDistributionConfig._customSection = "nodleDistributionMissingBaseUrl";
+            Assert.Throws<ConfigurationErrorsException>(() =>
+                                                            {
+                                                                var dumb = NodleDistributionConfig.Instance;
+                                                            });
+        }[Test]
+        public void Get_InstanceWithMissingChannel_ReturnsMissingParameterError()
+        {
+            NodleDistributionConfig._customSection = "nodleDistributionChannel";
+            Assert.Throws<ConfigurationErrorsException>(() =>
+                                                            {
+                                                                var dumb = NodleDistributionConfig.Instance;
+                                                            });
         }
     }
 }
