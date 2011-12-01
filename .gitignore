@@ -1,7 +1,6 @@
 
 .idea/
 node_modules/
-packages/
 *.logs/
 #ignore thumbnails created by windows
 Thumbs.db
