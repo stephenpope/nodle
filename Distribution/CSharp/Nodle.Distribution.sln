@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nodle.Distribution", "Nodle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nodle.Distribution.Tests", "Nodle.Distribution.Tests\Nodle.Distribution.Tests.csproj", "{4FE2BEC2-10D7-4E40-B14A-E2FC433E56BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nodle.Distribution.Tests2", "Nodle.Distribution.Tests2\Nodle.Distribution.Tests2.csproj", "{D1D11A9C-E6EE-4B80-9CD5-D4CC4296DAA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{4FE2BEC2-10D7-4E40-B14A-E2FC433E56BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FE2BEC2-10D7-4E40-B14A-E2FC433E56BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FE2BEC2-10D7-4E40-B14A-E2FC433E56BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D11A9C-E6EE-4B80-9CD5-D4CC4296DAA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D11A9C-E6EE-4B80-9CD5-D4CC4296DAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D11A9C-E6EE-4B80-9CD5-D4CC4296DAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D11A9C-E6EE-4B80-9CD5-D4CC4296DAA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

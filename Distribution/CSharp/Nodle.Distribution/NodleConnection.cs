@@ -1,27 +1,46 @@
 using System;
+using System.Net;
 using RestSharp;
 
 namespace Nodle.Distribution
 {
     public class NodleConnection : INodleConnection
     {
-        public string BaseUrl { get; set; }
+        private readonly INodleDistributionConfig _config;
+        private readonly INodleLogger _logger;
 
         internal RestClient Client { get; set; }
 
-        public NodleConnection(string baseUrl)
+        public NodleConnection(INodleDistributionConfig config, INodleLogger logger = null)
         {
-            Client = new RestClient(baseUrl);    
-        }
+            if (config == null) throw new ArgumentNullException("config");
 
-        public NodleConnection(Uri baseUrl)
-        {
-            Client = new RestClient(baseUrl.ToString());    
+            _config = config;
+            _logger = logger;
+
+            Client = new RestClient(_config.BaseUrl);    
         }
 
         public void Send(INodelMessage message)
         {
-            throw new System.NotImplementedException();
+            if (message == null) throw new ArgumentNullException("message");
+
+            var request = new RestRequest("/pub/{channel}/", Method.POST);
+            request.AddUrlSegment("channel", _config.Channel);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("key", _config.AccessKey);
+            request.AddBody(message);
+            Client.ExecuteAsync(request, LogResponse);  
+        }
+
+        private void LogResponse(RestResponse response)
+        {
+            if (_logger == null) return;
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                _logger.Error("[ERROR] - Message not sent!");
+            }
         }
     }
 }

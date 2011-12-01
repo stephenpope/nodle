@@ -10,36 +10,24 @@ namespace Nodle.Distribution
         /// <summary>
         /// Gets the nodle service username.
         /// </summary>
-        [ConfigurationProperty("username", IsRequired = true)]
-        public string Username
+        [ConfigurationProperty("accesskey", IsRequired = true)]
+        public string AccessKey
         {
             get
             {
-                return (string)this["username"];
-            }
-        }
-
-        /// <summary>
-        /// Gets the nodle service password.
-        /// </summary>
-        [ConfigurationProperty("password", IsRequired = true)]
-        public string Password
-        {
-            get
-            {
-                return (string)this["password"];
+                return (string)this["accesskey"];
             }
         }
 
         /// <summary>
         /// Gets the nodle service URL.
         /// </summary>
-        [ConfigurationProperty("url", IsRequired = true)]
-        public string Url
+        [ConfigurationProperty("baseUrl", IsRequired = true)]
+        public string BaseUrl
         {
             get
             {
-                return (string)this["url"];
+                return (string)this["baseUrl"];
             }
         }
 
