@@ -5,7 +5,7 @@ namespace Nodle.Distribution
     /// <summary>
     /// General confgiration object
     /// </summary>
-    public class NodleDistributionConfig : ConfigurationSection
+    public class NodleDistributionConfig : ConfigurationSection, INodleDistributionConfig
     {
         private static NodleDistributionConfig _instance;
         private static readonly string _defaultSection = "nodleDistribution";
