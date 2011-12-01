@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NodleDistributionConfigSection.cs" />
     <Compile Include="INodleMessage.cs" />
     <Compile Include="INodleConnection.cs" />
     <Compile Include="INodleDistributionConfig.cs" />
