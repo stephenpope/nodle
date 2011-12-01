@@ -23,4 +23,10 @@ exports.init = function(app){
 			})
 		});
 	});
+
+	function send(message, callback){
+		io.sockets.send(message);
+	}
+
+	return {send: send};
 };
