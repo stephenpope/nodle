@@ -55,6 +55,7 @@
     <Compile Include="NodleDistributionConfig.cs" />
     <Compile Include="NodleConnection.cs" />
     <Compile Include="NodleLogLevel.cs" />
+    <Compile Include="NodleMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
