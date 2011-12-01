@@ -1,6 +1,6 @@
 namespace Nodle.Distribution
 {
-    public interface INodelMessage
+    public interface INodleMessage
     {
     }
 }

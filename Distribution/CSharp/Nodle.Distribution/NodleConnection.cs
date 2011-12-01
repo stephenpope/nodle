@@ -21,14 +21,14 @@ namespace Nodle.Distribution
             Client = new RestClient(_config.BaseUrl);    
         }
 
-        public void Send(INodelMessage message)
+        public void Send(INodleMessage message)
         {
             if (message == null) throw new ArgumentNullException("message");
 
             var request = new RestRequest("/pub/{channel}/", Method.POST);
             request.AddUrlSegment("channel", _config.Channel);
             request.RequestFormat = DataFormat.Json;
-            request.AddHeader("key", _config.AccessKey);
+            request.AddHeader("nodleKey", _config.AccessKey);
             request.AddBody(message);
             Client.ExecuteAsync(request, LogResponse);  
         }
@@ -39,7 +39,7 @@ namespace Nodle.Distribution
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                _logger.Error("[ERROR] - Message not sent!");
+                _logger.Error("Message not sent ( + " + response.ErrorMessage + " )");
             }
         }
     }

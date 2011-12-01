@@ -2,6 +2,6 @@
 {
     public interface INodleConnection
     {
-        void Send(INodelMessage message);
+        void Send(INodleMessage message);
     }
 }
